@@ -57,18 +57,22 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 // 无状态Session
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // 权限配置（核心：细分接口权限）
+                // 权限配置（核心修复：路径匹配规则，**必须放在末尾）
                 .authorizeHttpRequests(auth -> auth
                         // 放行预检请求、登录/注册、H2控制台
                         .requestMatchers("OPTIONS/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
-                        // 书籍查询接口：匿名可访问（或登录用户）
+                        // 书籍查询接口：匿名可访问
                         .requestMatchers("/books").permitAll()
-                        // 借阅/归还接口：登录用户（USER/ADMIN）可访问
+                        // 评价接口：登录用户可访问（提交/查看），审核/删除由@PreAuthorize控制
+                        .requestMatchers("/comments/**").hasAnyRole("USER", "ADMIN")
+                        // 借阅/归还接口：登录用户可访问
                         .requestMatchers("/borrows/**").hasAnyRole("USER", "ADMIN")
-                        // 书籍管理/用户管理：仅管理员
-                        .requestMatchers("/books/**/*", "/users/**").hasRole("ADMIN")
+                        // 书籍管理接口：仅管理员（修复路径：/** 替代 /**/*，避免解析错误）
+                        .requestMatchers("/books/**").hasRole("ADMIN")
+                        // 用户管理：仅管理员
+                        .requestMatchers("/users/**").hasRole("ADMIN")
                         // 其他所有接口需认证
                         .anyRequest().authenticated()
                 )
@@ -82,7 +86,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 跨域配置（兼容Spring 6.x）
+    // 跨域配置（兼容Spring 6.x，匹配前端5173端口）
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -99,7 +103,7 @@ public class SecurityConfig {
         // 预检请求有效期（1小时）
         config.setMaxAge(3600L);
 
-        // 应用到所有接口
+        // 应用到所有接口（包含/api上下文路径）
         source.registerCorsConfiguration("/**", config);
         return source;
     }

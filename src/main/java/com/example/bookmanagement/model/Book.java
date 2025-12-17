@@ -25,4 +25,9 @@ public class Book {
     private int borrowCount = 0;
 
     private String publish;
+
+    // 新增评分相关字段
+    private Double avgScore = 0.0;
+
+    private Integer commentCount = 0;
 }

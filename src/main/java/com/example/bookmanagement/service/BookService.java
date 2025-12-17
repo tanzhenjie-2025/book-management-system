@@ -4,12 +4,10 @@ import com.example.bookmanagement.model.Book;
 import com.example.bookmanagement.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * 确保import完整，解决"找不到符号"错误
- */
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -70,5 +68,17 @@ public class BookService {
         Book book = getBookById(bookId);
         book.setStock(book.getStock() + 1);
         bookRepository.save(book);
+    }
+
+    // ========== 关键修复：确保该方法是public且参数匹配 ==========
+    /**
+     * 更新书籍的评分统计（平均评分+评价数量）
+     */
+    @Transactional
+    public void updateBookScores(Long bookId, Double avgScore, Long commentCount) {
+        // 先校验书籍存在性
+        getBookById(bookId);
+        // 调用Repository的更新方法
+        bookRepository.updateBookScores(bookId, avgScore, commentCount);
     }
 }
