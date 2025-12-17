@@ -4,40 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/BookManagementApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BookController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BorrowRecordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/ViolationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/dto/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/dto/LoginResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/BorrowRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Violation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BorrowRecordRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/ViolationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BorrowRecordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/ViolationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="图书管理系统后端">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BorrowRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BorrowRecordController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,8 +75,17 @@
       <option name="presentableId" value="Default" />
       <updated>1765930956345</updated>
       <workItem from="1765930957479" duration="4143000" />
-      <workItem from="1765935136896" duration="5976000" />
+      <workItem from="1765935136896" duration="6650000" />
     </task>
+    <task id="LOCAL-00001" summary="图书管理系统后端">
+      <option name="closed" value="true" />
+      <created>1765941322403</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1765941322403</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +101,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="图书管理系统后端" />
+    <option name="LAST_COMMIT_MESSAGE" value="图书管理系统后端" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
