@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="修复书籍显示bug">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="将数据源切换为mysql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/BorrowRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/BorrowRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BorrowRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BorrowRecordService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1765930956345</updated>
       <workItem from="1765930957479" duration="4143000" />
-      <workItem from="1765935136896" duration="10177000" />
+      <workItem from="1765935136896" duration="13027000" />
     </task>
     <task id="LOCAL-00001" summary="图书管理系统后端">
       <option name="closed" value="true" />
@@ -106,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765953384105</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="将数据源切换为mysql">
+      <option name="closed" value="true" />
+      <created>1765957224783</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765957224783</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +130,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="图书管理系统后端" />
     <MESSAGE value="修复书籍显示bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复书籍显示bug" />
+    <MESSAGE value="将数据源切换为mysql" />
+    <option name="LAST_COMMIT_MESSAGE" value="将数据源切换为mysql" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
