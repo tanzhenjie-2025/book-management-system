@@ -50,7 +50,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    // 关键修复：补充实现isEnabled()方法
+
     @Override
     public boolean isEnabled() {
         return this.enabled; // 返回实体类的enabled字段
