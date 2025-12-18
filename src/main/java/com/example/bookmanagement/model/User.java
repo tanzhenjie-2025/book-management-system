@@ -55,4 +55,8 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return this.enabled; // 返回实体类的enabled字段
     }
+
+    public int getViolationCount() {
+        return violationCount;
+    }
 }
