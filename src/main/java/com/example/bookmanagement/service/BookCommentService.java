@@ -47,6 +47,19 @@ public class BookCommentService {
     }
 
     /**
+     * 新增：管理员获取待审核评论（可按书籍ID筛选）
+     */
+    public List<BookComment> getPendingComments(Long bookId) {
+        if (bookId != null) {
+            // 查指定书籍的未审核、未删除评论
+            return bookCommentRepository.findByBookIdAndIsAuditFalseAndIsDeletedFalse(bookId);
+        } else {
+            // 查所有未审核、未删除评论
+            return bookCommentRepository.findByIsAuditFalseAndIsDeletedFalse();
+        }
+    }
+
+    /**
      * 添加书籍评价（原有逻辑优化，补充时间字段）
      */
     @Transactional

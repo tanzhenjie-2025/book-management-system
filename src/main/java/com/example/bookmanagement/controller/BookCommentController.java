@@ -37,6 +37,25 @@ public class BookCommentController {
         }
     }
 
+    // 新增：管理员获取待审核评论
+    @GetMapping("/pending")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Object>> getPendingComments(
+            @RequestParam(required = false) Long bookId) {
+        try {
+            List<BookComment> comments = bookCommentService.getPendingComments(bookId);
+            return ResponseEntity.ok(Map.of(
+                    "success", true,
+                    "message", "获取待审核评论成功",
+                    "data", comments
+            ));
+        } catch (Exception e) {
+            log.error("获取待审核评论失败, bookId: {}", bookId, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("success", false, "message", "获取待审核评论失败：" + e.getMessage()));
+        }
+    }
+
     // 添加书籍评价（补充异常处理）
     @PostMapping
     public ResponseEntity<Map<String, Object>> addComment(@RequestBody CommentDTO commentDTO) {

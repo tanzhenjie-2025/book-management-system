@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="修复前端归还书籍后不能正确显示归还信息的bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BookCommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/dto/CommentDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/BookComment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookCommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookCommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8be1d4dd-7c28-4bf0-8d6b-61b93f892b9a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8be1d4dd-7c28-4bf0-8d6b-61b93f892b9a.xml" afterDir="false" />
+    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="增加书籍评论功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookCommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookCommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookCommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookCommentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1765930956345</updated>
       <workItem from="1765930957479" duration="4143000" />
-      <workItem from="1765935136896" duration="18090000" />
+      <workItem from="1765935136896" duration="19238000" />
     </task>
     <task id="LOCAL-00001" summary="图书管理系统后端">
       <option name="closed" value="true" />
@@ -127,7 +118,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765971857717</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="增加书籍评论功能">
+      <option name="closed" value="true" />
+      <created>1765977833247</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1765977833247</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +148,8 @@
     <MESSAGE value="修复书籍显示bug" />
     <MESSAGE value="将数据源切换为mysql" />
     <MESSAGE value="修复前端归还书籍后不能正确显示归还信息的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复前端归还书籍后不能正确显示归还信息的bug" />
+    <MESSAGE value="增加书籍评论功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加书籍评论功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

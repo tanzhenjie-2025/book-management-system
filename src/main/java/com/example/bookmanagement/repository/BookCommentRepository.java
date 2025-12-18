@@ -30,4 +30,10 @@ public interface BookCommentRepository extends JpaRepository<BookComment, Long> 
     @Query("SELECT bc FROM BookComment bc WHERE bc.bookId = :bookId AND bc.isDeleted = false AND " +
             "(bc.isAudit = true OR (bc.isAudit = false AND bc.userId = :userId))")
     List<BookComment> findVisibleCommentsForUser(@Param("bookId") Long bookId, @Param("userId") Long userId);
+
+    // 新增：按书籍ID查未审核、未删除的评论（管理员审核用）
+    List<BookComment> findByBookIdAndIsAuditFalseAndIsDeletedFalse(Long bookId);
+
+    // 新增：查所有未审核、未删除的评论（管理员审核用）
+    List<BookComment> findByIsAuditFalseAndIsDeletedFalse();
 }
