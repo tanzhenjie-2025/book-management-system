@@ -24,7 +24,7 @@ public class OverdueCheckService {
     private final ViolationService violationService;
 
     // 每分钟执行一次检查
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "*/10 * * * * *")
     @Transactional
     public void checkOverdueBooks() {
         log.info("开始检查逾期书籍...");
