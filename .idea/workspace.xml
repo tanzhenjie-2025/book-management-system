@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="修改违规检查时间">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/ScheduledTasksConfig.java" afterDir="false" />
+    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="添加检查用户违规次数定时器">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/BookManagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/BookManagementApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/ScheduledTasksConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/config/ScheduledTasksConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookCommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookCommentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +85,9 @@
       <updated>1765930956345</updated>
       <workItem from="1765930957479" duration="4143000" />
       <workItem from="1765935136896" duration="19238000" />
+      <workItem from="1766103287356" duration="5657000" />
+      <workItem from="1767356418224" duration="4000" />
+      <workItem from="1781603085249" duration="2059000" />
     </task>
     <task id="LOCAL-00001" summary="图书管理系统后端">
       <option name="closed" value="true" />
@@ -135,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766063446919</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="添加检查用户违规次数定时器">
+      <option name="closed" value="true" />
+      <created>1766064175107</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1766064175107</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +169,8 @@
     <MESSAGE value="修复前端归还书籍后不能正确显示归还信息的bug" />
     <MESSAGE value="增加书籍评论功能" />
     <MESSAGE value="修改违规检查时间" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改违规检查时间" />
+    <MESSAGE value="添加检查用户违规次数定时器" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加检查用户违规次数定时器" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

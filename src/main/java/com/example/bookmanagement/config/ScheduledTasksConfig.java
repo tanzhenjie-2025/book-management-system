@@ -21,7 +21,7 @@ public class ScheduledTasksConfig {
     private final UserService userService;
 
     /**
-     * 每天凌晨2点执行检查
+     *
      * cron表达式：秒 分 时 日 月 周
      */
     @Scheduled(cron = "*/10 * * * * *")

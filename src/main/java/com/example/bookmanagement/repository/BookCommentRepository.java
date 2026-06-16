@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookCommentRepository extends JpaRepository<BookComment, Long> {
-    // 根据书籍ID查询已审核的评价（原有）
+    // 根据书籍ID查询已审核的评价
     List<BookComment> findByBookIdAndIsAuditTrueAndIsDeletedFalse(Long bookId);
 
-    // 检查用户是否已评价过该书籍（原有）
+    // 检查用户是否已评价过该书籍
     Optional<BookComment> findByUserIdAndBookIdAndIsDeletedFalse(Long userId, Long bookId);
 
-    // 查询书籍的平均评分（原有）
+    // 查询书籍的平均评分
     @Query("SELECT AVG(c.score) FROM BookComment c WHERE c.bookId = :bookId AND c.isAudit = true AND c.isDeleted = false")
     Double findAverageScoreByBookId(@Param("bookId") Long bookId);
 
-    // 查询书籍的评价数量（原有）
+    // 查询书籍的评价数量
     @Query("SELECT COUNT(c) FROM BookComment c WHERE c.bookId = :bookId AND c.isAudit = true AND c.isDeleted = false")
     Long countByBookId(@Param("bookId") Long bookId);
 
