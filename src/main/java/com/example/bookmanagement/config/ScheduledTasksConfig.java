@@ -24,7 +24,7 @@ public class ScheduledTasksConfig {
      *
      * cron表达式：秒 分 时 日 月 周
      */
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "* * 1 * * *")
     public void checkUserViolations() {
         log.info("开始执行用户违规次数检查任务");
 
