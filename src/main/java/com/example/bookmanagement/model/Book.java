@@ -26,8 +26,11 @@ public class Book {
 
     private String publish;
 
-    // 新增评分相关字段
     private Double avgScore = 0.0;
 
     private Integer commentCount = 0;
+
+    // 软删除标记（下架状态）
+    @Column(nullable = false)
+    private Boolean deleted = false;
 }

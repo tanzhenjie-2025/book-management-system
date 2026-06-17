@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="新增导出书籍信息功能">
+    <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="新增书籍管理功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +89,7 @@
       <workItem from="1765935136896" duration="19238000" />
       <workItem from="1766103287356" duration="5657000" />
       <workItem from="1767356418224" duration="4000" />
-      <workItem from="1781603085249" duration="7888000" />
+      <workItem from="1781603085249" duration="10744000" />
     </task>
     <task id="LOCAL-00001" summary="图书管理系统后端">
       <option name="closed" value="true" />
@@ -161,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781609287470</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="新增添加导入和覆盖导入功能">
+      <option name="closed" value="true" />
+      <created>1781668147091</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1781668147091</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +197,9 @@
     <MESSAGE value="修改违规检查时间" />
     <MESSAGE value="添加检查用户违规次数定时器" />
     <MESSAGE value="新增导出书籍信息功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增导出书籍信息功能" />
+    <MESSAGE value="新增添加导入和覆盖导入功能" />
+    <MESSAGE value="新增书籍管理功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增书籍管理功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

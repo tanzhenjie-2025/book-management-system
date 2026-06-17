@@ -20,7 +20,15 @@ import java.util.Optional;
 public class BookService {
     private final BookRepository bookRepository;
 
+    // ================= 查询 =================
+
+    /** 获取所有未下架的书籍（首页展示） */
     public List<Book> getAllBooks() {
+        return bookRepository.findByDeletedFalse();
+    }
+
+    /** 管理员获取全部书籍（包括已下架） */
+    public List<Book> getAllBooksForAdmin() {
         return bookRepository.findAll();
     }
 
@@ -29,22 +37,54 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException("书籍不存在"));
     }
 
+    // ================= 增删改 =================
+
     public Book addBook(Book book) {
         if (bookRepository.findByNameAndAuthor(book.getName(), book.getAuthor()).isPresent()) {
             throw new RuntimeException("该书籍已存在（名称+作者重复）");
         }
+        book.setDeleted(false);   // 新书默认上架
         return bookRepository.save(book);
     }
 
+    /** 完整更新书籍信息（不修改借阅次数、评分、评论数、软删除状态） */
     public Book updateBook(Book book) {
-        if (!bookRepository.existsById(book.getId())) {
-            throw new RuntimeException("书籍不存在");
-        }
-        return bookRepository.save(book);
+        Book existing = getBookById(book.getId());
+        existing.setName(book.getName());
+        existing.setAuthor(book.getAuthor());
+        existing.setCategory(book.getCategory());
+        existing.setStock(book.getStock());
+        existing.setPublish(book.getPublish());
+        existing.setDescription(book.getDescription());
+        return bookRepository.save(existing);
     }
 
+    /** 物理删除（建议改用软删除） */
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    // ================= 软删除（下架/上架） =================
+
+    public void softDeleteBook(Long id) {
+        Book book = getBookById(id);
+        book.setDeleted(true);
+        bookRepository.save(book);
+    }
+
+    public void restoreBook(Long id) {
+        Book book = getBookById(id);
+        book.setDeleted(false);
+        bookRepository.save(book);
+    }
+
+    // ================= 库存操作 =================
+
+    /** 直接设置库存（管理页面快捷修改） */
+    public void updateStock(Long bookId, int newStock) {
+        Book book = getBookById(bookId);
+        book.setStock(newStock);
+        bookRepository.save(book);
     }
 
     public void increaseBorrowCount(Long bookId) {
@@ -74,9 +114,10 @@ public class BookService {
         bookRepository.updateBookScores(bookId, avgScore, commentCount);
     }
 
-    // ================= 导出 Excel 方法 =================
+    // ================= 导出 Excel =================
+
     public byte[] exportBooksToExcel() throws Exception {
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = bookRepository.findAll();   // 导出全部（含下架）
 
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("图书信息");
@@ -123,18 +164,15 @@ public class BookService {
         return out.toByteArray();
     }
 
-    // ================= 导入相关方法 =================
+    // ================= 导入 =================
 
-    /**
-     * 解析上传的Excel文件，返回图书列表（仅包含基础信息）
-     */
     private List<Book> parseExcel(MultipartFile file) throws Exception {
         List<Book> books = new ArrayList<>();
         try (InputStream is = file.getInputStream();
              Workbook workbook = WorkbookFactory.create(is)) {
 
             Sheet sheet = workbook.getSheetAt(0);
-            for (int rowIdx = 1; rowIdx <= sheet.getLastRowNum(); rowIdx++) { // 跳过表头
+            for (int rowIdx = 1; rowIdx <= sheet.getLastRowNum(); rowIdx++) {
                 Row row = sheet.getRow(rowIdx);
                 if (row == null) continue;
 
@@ -148,25 +186,16 @@ public class BookService {
                         book.setId(Long.parseLong(idCell.getStringCellValue()));
                     } catch (NumberFormatException ignored) {}
                 }
-
-                // 书名
                 book.setName(getCellString(row, 1));
-                // 作者
                 book.setAuthor(getCellString(row, 2));
-                // 分类
                 book.setCategory(getCellString(row, 3));
-                // 库存
                 Cell stockCell = row.getCell(4);
                 if (stockCell != null && stockCell.getCellType() == CellType.NUMERIC) {
                     book.setStock((int) stockCell.getNumericCellValue());
                 }
-                // 借阅次数、平均评分、评论数不读取（导入时忽略）
-                // 出版社
                 book.setPublish(getCellString(row, 6));
-                // 描述
                 book.setDescription(getCellString(row, 9));
 
-                // 至少要有书名和作者，否则跳过空行
                 if (book.getName() != null && !book.getName().isEmpty() &&
                         book.getAuthor() != null && !book.getAuthor().isEmpty()) {
                     books.add(book);
@@ -179,24 +208,19 @@ public class BookService {
     private String getCellString(Row row, int colIdx) {
         Cell cell = row.getCell(colIdx);
         if (cell == null) return null;
-        cell.setCellType(CellType.STRING); // 强制转为字符串
+        cell.setCellType(CellType.STRING);
         return cell.getStringCellValue().trim();
     }
 
-    /**
-     * 覆盖导入：根据ID或书名+作者匹配，更新基础信息，不影响其他书籍
-     */
     @Transactional
     public int importBooksOverwrite(MultipartFile file) throws Exception {
         List<Book> importBooks = parseExcel(file);
         int count = 0;
         for (Book importBook : importBooks) {
-            // 优先根据ID查找
             Optional<Book> existing = Optional.empty();
             if (importBook.getId() != null) {
                 existing = bookRepository.findById(importBook.getId());
             }
-            // 如果ID未匹配，根据书名+作者查找
             if (existing.isEmpty()) {
                 existing = bookRepository.findByNameAndAuthor(importBook.getName(), importBook.getAuthor());
             }
@@ -204,7 +228,6 @@ public class BookService {
             Book book;
             if (existing.isPresent()) {
                 book = existing.get();
-                // 覆盖基础字段（保留ID、借阅次数、评分、评论数）
                 book.setName(importBook.getName());
                 book.setAuthor(importBook.getAuthor());
                 book.setCategory(importBook.getCategory());
@@ -213,10 +236,11 @@ public class BookService {
                 book.setDescription(importBook.getDescription());
             } else {
                 book = importBook;
-                book.setId(null); // 新增时ID自增
+                book.setId(null);
                 book.setBorrowCount(0);
                 book.setAvgScore(0.0);
                 book.setCommentCount(0);
+                book.setDeleted(false);
             }
             bookRepository.save(book);
             count++;
@@ -224,9 +248,6 @@ public class BookService {
         return count;
     }
 
-    /**
-     * 添加导入：已存在的书籍只累加库存，不存在则新增
-     */
     @Transactional
     public int importBooksAppend(MultipartFile file) throws Exception {
         List<Book> importBooks = parseExcel(file);
@@ -242,7 +263,6 @@ public class BookService {
 
             if (existing.isPresent()) {
                 Book book = existing.get();
-                // 只累加库存，其他字段保持不变
                 book.setStock(book.getStock() + importBook.getStock());
                 bookRepository.save(book);
             } else {
@@ -250,6 +270,7 @@ public class BookService {
                 importBook.setBorrowCount(0);
                 importBook.setAvgScore(0.0);
                 importBook.setCommentCount(0);
+                importBook.setDeleted(false);
                 bookRepository.save(importBook);
             }
             count++;

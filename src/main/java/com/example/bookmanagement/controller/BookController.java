@@ -20,9 +20,17 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
+    // 首页获取未下架书籍
     @GetMapping
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
+    }
+
+    // 管理员获取全部书籍（含下架）
+    @GetMapping("/admin/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Book> getAllBooksForAdmin() {
+        return bookService.getAllBooksForAdmin();
     }
 
     @GetMapping("/{id}")
@@ -36,27 +44,45 @@ public class BookController {
         return ResponseEntity.ok(bookService.addBook(book));
     }
 
-    @PutMapping
+    // 全字段更新
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
+        book.setId(id);
         return ResponseEntity.ok(bookService.updateBook(book));
     }
 
-    @DeleteMapping("/{id}")
+    // 快捷更新库存
+    @PutMapping("/{id}/stock")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
-        bookService.deleteBook(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> updateStock(@PathVariable Long id, @RequestParam int stock) {
+        bookService.updateStock(id, stock);
+        return ResponseEntity.ok("库存更新成功");
     }
 
-    // 导出图书 Excel 接口
+    // 下架
+    @PutMapping("/{id}/soft-delete")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> softDelete(@PathVariable Long id) {
+        bookService.softDeleteBook(id);
+        return ResponseEntity.ok("下架成功");
+    }
+
+    // 上架
+    @PutMapping("/{id}/restore")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> restore(@PathVariable Long id) {
+        bookService.restoreBook(id);
+        return ResponseEntity.ok("上架成功");
+    }
+
+    // 导出
     @GetMapping("/export")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<byte[]> exportBooks() {
         System.out.println("========== 导出图书接口被调用 ==========");
         try {
             byte[] excelBytes = bookService.exportBooksToExcel();
-
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
             String filename = "图书信息_" + timestamp + ".xlsx";
 
@@ -72,8 +98,7 @@ public class BookController {
         }
     }
 
-    // ==================== 导入接口 ====================
-    // 覆盖导入：用Excel中的数据完全覆盖匹配书籍的基础信息，不改变其他书籍
+    // 覆盖导入
     @PostMapping("/import/overwrite")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> importOverwrite(@RequestParam("file") MultipartFile file) {
@@ -85,7 +110,7 @@ public class BookController {
         }
     }
 
-    // 添加导入：已存在的书籍只累加库存，否则新增书籍
+    // 添加导入
     @PostMapping("/import/append")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> importAppend(@RequestParam("file") MultipartFile file) {
