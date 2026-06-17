@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -68,6 +69,31 @@ public class BookController {
                     .body(excelBytes);
         } catch (Exception e) {
             throw new RuntimeException("导出图书信息失败：" + e.getMessage());
+        }
+    }
+
+    // ==================== 导入接口 ====================
+    // 覆盖导入：用Excel中的数据完全覆盖匹配书籍的基础信息，不改变其他书籍
+    @PostMapping("/import/overwrite")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> importOverwrite(@RequestParam("file") MultipartFile file) {
+        try {
+            int count = bookService.importBooksOverwrite(file);
+            return ResponseEntity.ok("覆盖导入成功，共处理 " + count + " 条记录");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("导入失败：" + e.getMessage());
+        }
+    }
+
+    // 添加导入：已存在的书籍只累加库存，否则新增书籍
+    @PostMapping("/import/append")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> importAppend(@RequestParam("file") MultipartFile file) {
+        try {
+            int count = bookService.importBooksAppend(file);
+            return ResponseEntity.ok("添加导入成功，共处理 " + count + " 条记录");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("导入失败：" + e.getMessage());
         }
     }
 }
