@@ -1,4 +1,3 @@
-// filePath: book-management-system/src/main/java/com/example/bookmanagement/model/BorrowRecord.java
 package com.example.bookmanagement.model;
 
 import jakarta.persistence.*;
@@ -14,12 +13,11 @@ public class BorrowRecord {
     private Long id;
 
     private Long userId;
-
     private Long bookId;
-
     private LocalDate borrowTime;
-
     private LocalDate returnTime;
-
     private boolean isReturned = false;
+
+    // 续借次数（最多1次）
+    private int renewCount = 0;
 }

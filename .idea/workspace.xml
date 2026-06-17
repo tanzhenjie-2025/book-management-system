@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="960d7d75-eaf4-4064-bedf-1cee574d82ad" name="Changes" comment="新增书籍管理功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BorrowRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/controller/BorrowRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/BorrowRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/model/BorrowRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BorrowRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookmanagement/service/BorrowRecordService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,7 @@
       <workItem from="1765935136896" duration="19238000" />
       <workItem from="1766103287356" duration="5657000" />
       <workItem from="1767356418224" duration="4000" />
-      <workItem from="1781603085249" duration="10744000" />
+      <workItem from="1781603085249" duration="14314000" />
     </task>
     <task id="LOCAL-00001" summary="图书管理系统后端">
       <option name="closed" value="true" />
@@ -171,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781668147091</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="新增书籍管理功能">
+      <option name="closed" value="true" />
+      <created>1781679672665</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781679672665</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
