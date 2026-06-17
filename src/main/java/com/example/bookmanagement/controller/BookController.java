@@ -1,5 +1,6 @@
 package com.example.bookmanagement.controller;
 
+import com.example.bookmanagement.annotation.LogOperation;
 import com.example.bookmanagement.model.Book;
 import com.example.bookmanagement.service.BookService;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,11 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
-    // 首页获取未下架书籍
     @GetMapping
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
-    // 管理员获取全部书籍（含下架）
     @GetMapping("/admin/all")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Book> getAllBooksForAdmin() {
@@ -40,45 +39,46 @@ public class BookController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "ADD_BOOK", description = "添加新书籍")
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         return ResponseEntity.ok(bookService.addBook(book));
     }
 
-    // 全字段更新
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "UPDATE_BOOK", description = "编辑书籍信息")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
         book.setId(id);
         return ResponseEntity.ok(bookService.updateBook(book));
     }
 
-    // 快捷更新库存
     @PutMapping("/{id}/stock")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "UPDATE_STOCK", description = "修改库存")
     public ResponseEntity<String> updateStock(@PathVariable Long id, @RequestParam int stock) {
         bookService.updateStock(id, stock);
         return ResponseEntity.ok("库存更新成功");
     }
 
-    // 下架
     @PutMapping("/{id}/soft-delete")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "SOFT_DELETE", description = "下架书籍")
     public ResponseEntity<String> softDelete(@PathVariable Long id) {
         bookService.softDeleteBook(id);
         return ResponseEntity.ok("下架成功");
     }
 
-    // 上架
     @PutMapping("/{id}/restore")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "RESTORE", description = "上架书籍")
     public ResponseEntity<String> restore(@PathVariable Long id) {
         bookService.restoreBook(id);
         return ResponseEntity.ok("上架成功");
     }
 
-    // 导出
     @GetMapping("/export")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "EXPORT", description = "导出图书")
     public ResponseEntity<byte[]> exportBooks() {
         System.out.println("========== 导出图书接口被调用 ==========");
         try {
@@ -98,9 +98,9 @@ public class BookController {
         }
     }
 
-    // 覆盖导入
     @PostMapping("/import/overwrite")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "IMPORT_OVERWRITE", description = "覆盖导入书籍")
     public ResponseEntity<String> importOverwrite(@RequestParam("file") MultipartFile file) {
         try {
             int count = bookService.importBooksOverwrite(file);
@@ -110,9 +110,9 @@ public class BookController {
         }
     }
 
-    // 添加导入
     @PostMapping("/import/append")
     @PreAuthorize("hasRole('ADMIN')")
+    @LogOperation(value = "IMPORT_APPEND", description = "添加导入书籍")
     public ResponseEntity<String> importAppend(@RequestParam("file") MultipartFile file) {
         try {
             int count = bookService.importBooksAppend(file);
